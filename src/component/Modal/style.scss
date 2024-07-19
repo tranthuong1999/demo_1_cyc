@@ -1,0 +1,44 @@
+.moadal-basic-common {
+    .box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 960px;
+        box-shadow: 24;
+        outline: 0;
+        z-index: 10000000;
+        margin: auto;
+
+        &.box-tabnet {
+            max-width: 800px !important;
+            padding: 0 20px;
+        }
+
+        &.box-mobile {
+            max-width: 500px !important;
+        }
+    }
+
+    .video-youtube {
+        width: 100% !important;
+        height: 400px !important;
+    }
+
+    .icon-close {
+        position: absolute;
+        z-index: 10000000;
+        top: -7%;
+        right: 0%;
+        color: white;
+        opacity: 1;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .icon-close-hidden {
+        opacity: 0;
+    }
+}
