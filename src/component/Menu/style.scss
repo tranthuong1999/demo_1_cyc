@@ -6,6 +6,12 @@
     min-height: 65px;
     margin: 0 40px;
 
+    .icon-menu {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     .img-logo {
         img {
             width: 200px;
@@ -35,7 +41,8 @@
                 cursor: pointer;
                 background-color: #fff !important;
             }
-            svg{
+
+            svg {
                 font-size: 30px;
             }
         }
