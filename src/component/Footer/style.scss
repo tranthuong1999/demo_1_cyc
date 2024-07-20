@@ -1,0 +1,170 @@
+.footer-page {
+    color: #f5f7ea;
+    width: 100%;
+    padding-bottom: 24px;
+    background-color: #212121;
+
+    .footer {
+        max-width: 960px;
+        margin: auto;
+
+        .block-2 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            border-top: 1px solid #fff;
+            align-items: center;
+
+            &.block-2-mobile {
+                flex-direction: column;
+                padding-top: 16px;
+                gap: 12px;
+
+                .block-2-center {
+                    .title {
+                        text-align: center;
+                    }
+
+                    .desc {
+                        max-width: 300px;
+                        margin: auto;
+                    }
+                }
+            }
+
+            .block-2-image-left,
+            .block-2-image-right {
+                img {
+                    width: 100px;
+                    height: 38px;
+                }
+            }
+
+            .block-2-center {
+                .title {
+                    color: #fff;
+                    padding: 20px 0 10px 0;
+                    font-size: 12px;
+                }
+
+                .desc {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+                    font-size: 12px;
+                    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+                    font-weight: 500;
+                    line-height: 1.6;
+                }
+            }
+        }
+
+        .block-1-mobile {
+            padding-top: 16px;
+            padding-bottom: 4px;
+
+            .policy {
+                display: flex;
+                justify-content: space-around;
+
+                p {
+                    color: #9e9e9e;
+                    font-size: 12px;
+                    transition: 0.4s;
+
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+            }
+
+            .image {
+                display: flex;
+                justify-content: center;
+                gap: 16px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    object-fit: contain;
+                }
+            }
+
+        }
+
+        .block-1 {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 16px;
+            padding-bottom: 16px;
+
+            .block-1-tix {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .child-2 {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 20px;
+                    justify-content: space-between;
+
+                    p {
+                        color: #9e9e9e;
+                        font-size: 12px;
+                        transition: 0.4s;
+                        padding-bottom: 7px;
+
+                        &:hover {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+
+            .block-1-social {
+                .image {
+                    margin-top: 10px;
+                    display: flex;
+                    gap: 0 10px;
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+            }
+
+            .block-1-doi-tac {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .list-image {
+                    display: flex;
+                    gap: 60px;
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    .title-footer {
+        font-size: 12px;
+    }
+
+}

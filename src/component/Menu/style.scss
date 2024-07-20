@@ -1,0 +1,57 @@
+.menu-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 65px;
+    margin: 0 40px;
+
+    .img-logo {
+        img {
+            width: 200px;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .event-cinema {
+        display: flex;
+        gap: 20px;
+    }
+
+    .event-user {
+        display: flex;
+        gap: 20px;
+
+        button {
+            font-size: 16px !important;
+            font-weight: 500;
+            line-height: 1.167 !important;
+            color: #9e9e9e !important;
+            transition: 0.4s;
+
+            &:hover {
+                color: #fb4226 !important;
+                cursor: pointer;
+                background-color: #fff !important;
+            }
+            svg{
+                font-size: 30px;
+            }
+        }
+    }
+
+    .btn {
+        border: none;
+        background-color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.235;
+        transition: 0.4s;
+
+        &:hover {
+            color: #fb4226;
+            cursor: pointer;
+        }
+    }
+}
