@@ -23,15 +23,15 @@ const LoginPage = observer(() => {
         });
     };
 
-    const handleSubmit = async (e: any) => {
+    const handleLogin = async (e: any) => {
         e.preventDefault();
-        console.log("credentials", credentials)
+        // console.log("credentials", credentials)
         await apiLogin({ data: credentials });
     };
 
     const renderFormLogin = () => {
         return (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleLogin}>
                 <div className='login-page'>
                     <AccountCircleIcon sx={{ color: "#fb4226", width: 50, height: 50 }} />
                     <h6 className='title-login'> Đăng nhập</h6>

@@ -36,8 +36,7 @@ const MenuPage = observer(() => {
     const isComputer = useMediaQuery(theme.breakpoints.up(1024));
     const isMobile = useMediaQuery(theme.breakpoints.down(600));
     const isTabnet = useMediaQuery(theme.breakpoints.between(600, 1024));
-    const [openFormRegister, setOpenFormRegister] = useState(false)
-    const { openModalLogin, setOpenModalLogin } = authenticationStore;
+    const { openModalLogin, setOpenModalLogin, openModalRegister, setOpenModalRegister } = authenticationStore;
 
     const [open, setOpen] = React.useState(false);
 
@@ -49,7 +48,17 @@ const MenuPage = observer(() => {
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
             <List>
                 {['Đăng nhập', 'Đăng kí'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                    <ListItem
+                        key={text}
+                        disablePadding
+                        onClick={() => {
+                            if (text == 'Đăng nhập') {
+                                setOpenModalLogin(true)
+                                return;
+                            }
+                            setOpenModalRegister(true);
+                        }}
+                    >
                         <ListItemButton sx={{ '&:hover': styleMenu }}>
                             <ListItemIcon sx={{ '&:hover': styleMenu }}>
                                 <AccountCircleIcon />
@@ -108,7 +117,7 @@ const MenuPage = observer(() => {
                                 </div>
                                 <div className='event-user'>
                                     <Button startIcon={<AccountCircleIcon />} className='btn btn-login' onClick={() => setOpenModalLogin(true)}> Đăng nhập</Button>
-                                    <Button startIcon={<AccountCircleIcon />} className='btn' onClick={() => setOpenFormRegister(true)}>Đăng kí</Button>
+                                    <Button startIcon={<AccountCircleIcon />} className='btn' onClick={() => setOpenModalRegister(true)}>Đăng kí</Button>
                                 </div>
                             </>
                         )
@@ -130,11 +139,8 @@ const MenuPage = observer(() => {
                 <LoginPage />
             }
             {
-                openFormRegister &&
-                <RegisterPage
-                    open={openFormRegister}
-                    onClose={() => setOpenFormRegister(false)}
-                />
+                openModalRegister &&
+                <RegisterPage />
             }
         </div >
     )

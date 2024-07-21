@@ -20,6 +20,7 @@ class AuthenticationStore {
     currentUser = {};
     userInfo = {};
     openModalLogin: boolean = false;
+    openModalRegister: boolean = false;
     userInfoErr: any = {}
     constructor() {
         makeAutoObservable(this);
@@ -27,6 +28,10 @@ class AuthenticationStore {
 
     setOpenModalLogin = (status: boolean) => {
         this.openModalLogin = status;
+    }
+
+    setOpenModalRegister = (status: boolean) => {
+        this.openModalRegister = status;
     }
 
     apiLogin = async (props: { data: SignIn }) => {

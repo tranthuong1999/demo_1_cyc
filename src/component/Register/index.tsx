@@ -8,8 +8,7 @@ import "./style.scss";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import DoneIcon from '@mui/icons-material/Done';
 
-const RegisterPage = observer((props: { open?: boolean, onClose?: () => void }) => {
-    const { open, onClose } = props;
+const RegisterPage = observer(() => {
     const [credentials, setCredentials] = useState({
         taiKhoan: '',
         matKhau: '',
@@ -19,7 +18,7 @@ const RegisterPage = observer((props: { open?: boolean, onClose?: () => void }) 
         maLoaiNguoiDung: "",
         maNhom: "GP09",
     });
-    const { apiRegister, userInfoErr } = authenticationStore;
+    const { apiRegister, userInfoErr, openModalRegister, setOpenModalRegister } = authenticationStore;
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const [registerSucess, setRegisterSucess] = useState(false)
@@ -28,6 +27,8 @@ const RegisterPage = observer((props: { open?: boolean, onClose?: () => void }) 
         if (registerSucess) {
             const timer = setTimeout(() => {
                 setRegisterSucess(false);
+                setOpenModalRegister(false)
+                // push login
             }, 1000);
             return () => clearTimeout(timer);
         }
@@ -40,7 +41,7 @@ const RegisterPage = observer((props: { open?: boolean, onClose?: () => void }) 
         });
     };
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmitUserInfo = async (e: any) => {
         e.preventDefault();
         await apiRegister({ data: credentials })
         setRegisterSucess(true)
@@ -48,7 +49,7 @@ const RegisterPage = observer((props: { open?: boolean, onClose?: () => void }) 
 
     const renderFormRegister = () => {
         return (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmitUserInfo}>
                 <div className='register-page'>
                     <AccountCircleIcon sx={{ color: "#fb4226", width: 50, height: 50 }} />
                     <h6 className='title-login'> Đăng ký</h6>
@@ -144,8 +145,8 @@ const RegisterPage = observer((props: { open?: boolean, onClose?: () => void }) 
     return (
         <div>
             <BasicModal
-                open={open!}
-                onClose={onClose}
+                open={openModalRegister}
+                onClose={() => setOpenModalRegister(false)}
                 content={renderFormRegister()}
             />
             {
