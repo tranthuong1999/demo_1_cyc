@@ -32,73 +32,75 @@ const SystemCinema = observer(() => {
         fetchInforSheduleCinemaSystem(item.maHeThongRap)
     }
 
-    console.log("list system data", toJS(listSheduleCinemaSystem))
-
-
     return (
-        <div className='system-cinema'>
-            <div className='item-left'>
-                {
-                    (listSysmtemCinema).map((item: SystemCinema, index: number) => {
-                        return (
-                            <div className='list-item-logo' key={index} onClick={() => handleGetSystemCinema(item)}>
-                                <img src={item.logo} className='item-logo' />
-                                <Divider />
-                            </div>
-                        )
-                    })
-                }
+        <div className="list-system-cinema">
+            <div className='img-shadown'>
+                <img src="https://demo1.cybersoft.edu.vn/static/media/back-news.b9861f84.png" />
             </div>
-            <div className='item-center'>
-                {
-                    (listSheduleCinemaSystem).map((item: any) => {
-                        return item.lstCumRap.map((list: any) => {
+            <div className='system-cinema'>
+                <div className='item-left'>
+                    {
+                        (listSysmtemCinema).map((item: SystemCinema, index: number) => {
                             return (
-                                <div className='list-cinema'>
-                                    <div className='name-cinema'> {list.tenCumRap}</div>
-                                    <div className='location'> {list.diaChi}</div>
-                                    <div className='detail'>
-                                        <a href="url">[Chi tiết]</a>
-                                    </div>
+                                <div className='list-item-logo' key={index} onClick={() => handleGetSystemCinema(item)}>
+                                    <img src={item.logo} className='item-logo' />
+                                    <Divider />
                                 </div>
                             )
                         })
-                    })
-                }
-            </div>
-            <div className='item-right'>
-                {
-                    toJS(listSheduleCinemaSystem).map((item: any) => {
-                        return item.lstCumRap.map((list: any) => {
-                            return (list.danhSachPhim.map((movie: any) => {
+                    }
+                </div>
+                <div className='item-center'>
+                    {
+                        (listSheduleCinemaSystem).map((item: any) => {
+                            return item.lstCumRap.map((list: any) => {
                                 return (
-                                    <div className='list-movie'>
-                                        <div className='block-1'>
-                                            <img src={movie.hinhAnh} />
-                                        </div>
-                                        {/* block 2 */}
-                                        <div className='block-2'>
-                                            <div className='movie-name'>
-                                                <span> C18</span>{movie.tenPhim}
-                                            </div>
-                                            <div className='show-presenter'>
-                                                {movie.lstLichChieuTheoPhim.slice(0, 4).map((show: any) => {
-                                                    return (
-                                                        <div className="block-2-child">
-                                                            <span className="date">{moment(show.ngayChieuGioChieu).format("DD/MM/YYYY")}</span> ~
-                                                            <span className="time">{moment(show.ngayChieuGioChieu).format("HH:mm")}</span>
-                                                        </div>
-                                                    )
-                                                })}
-                                            </div>
+                                    <div className='list-cinema'>
+                                        <div className='name-cinema'> {list.tenCumRap}</div>
+                                        <div className='location'> {list.diaChi}</div>
+                                        <div className='detail'>
+                                            <a href="url">[Chi tiết]</a>
                                         </div>
                                     </div>
                                 )
-                            }))
+                            })
                         })
-                    })
-                }
+                    }
+                </div>
+                <div className='item-right'>
+                    {
+                        toJS(listSheduleCinemaSystem).map((item: any) => {
+                            return item.lstCumRap.map((list: any) => {
+                                return (list.danhSachPhim.map((movie: any) => {
+                                    return (
+                                        <div className='list-movie'>
+                                            <div className='block-1'>
+                                                <img src={movie.hinhAnh} />
+                                            </div>
+                                            {/* block 2 */}
+                                            <div className='block-2'>
+                                                <div className='movie-name'>
+                                                    <span> C18</span>{movie.tenPhim}
+                                                </div>
+                                                <div className='show-presenter'>
+                                                    {movie.lstLichChieuTheoPhim.slice(0, 4).map((show: any) => {
+                                                        return (
+                                                            <div className="block-2-child">
+                                                                <span className="date">{moment(show.ngayChieuGioChieu).format("DD/MM/YYYY")}</span> ~
+                                                                <span className="time">{moment(show.ngayChieuGioChieu).format("HH:mm")}</span>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                }))
+                            })
+                        })
+                    }
 
+                </div>
             </div>
         </div>
     )
