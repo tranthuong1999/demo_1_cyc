@@ -11,15 +11,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 
 const MenuPage = () => {
 
     const theme = useTheme();
-    const isTabnet = useMediaQuery(theme.breakpoints.between(600, 1024));
-    const isMobile = useMediaQuery(theme.breakpoints.down(600));
     const isComputer = useMediaQuery(theme.breakpoints.up(1024));
 
 
@@ -56,8 +52,6 @@ const MenuPage = () => {
             </List>
         </Box>
     );
-
-
 
     return (
         <div className='menu-bar'>

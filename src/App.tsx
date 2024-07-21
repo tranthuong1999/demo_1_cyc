@@ -7,20 +7,24 @@ import SystemCinema from './component/SystemCinema';
 import ReviewPage from './component/Review';
 import DownloadApp from './component/DonwloadApp';
 import { FooterPage } from './component/Footer';
-
+import { useTheme } from "@mui/material/styles";
+import { Button, useMediaQuery } from "@mui/material";
 
 function App() {
+
+  const theme = useTheme();
+  const isComputer = useMediaQuery(theme.breakpoints.up(1024));
+  const isMobile = useMediaQuery(theme.breakpoints.down(600));
 
   return (
     <>
       <MenuPage />
-      <IntroducePage />
+      {!isMobile && <IntroducePage />}
       <MoviePage />
-      <SystemCinema />
+      {isComputer && <SystemCinema />}
+      <ReviewPage />
       <DownloadApp />
       <FooterPage />
-      {/* <ReviewPage /> */}
-      {/* <TestDesign /> */}
     </>
   );
 }

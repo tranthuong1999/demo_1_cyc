@@ -9,7 +9,6 @@ const TestDesign = () => {
             <div className='item-3 item'> Item3 </div>
             <div className='item-4 item'> Item4 </div>
             <div className='item-5 item'> Item5 </div>
-
         </div>
     )
 }

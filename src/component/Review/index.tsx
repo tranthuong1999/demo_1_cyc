@@ -7,7 +7,6 @@ import classNames from "classnames";
 import { useTheme } from "@mui/material/styles";
 import { Button, useMediaQuery } from "@mui/material";
 
-
 const data = [
     { name: "Điện ảnh 24h", code: "60b9f19280400f00177b744b", index: 1, article: "ArticlesDienAnh02" },
     { name: "Review", code: "60babc8f42e1d0001761ff84", index: 2, article: "ArticlesReview02" },
@@ -16,8 +15,7 @@ const data = [
 
 const ReviewPage = observer(() => {
     const theme = useTheme();
-    const isTabnet = useMediaQuery(theme.breakpoints.between(600, 1024));
-    const isMobile = useMediaQuery(theme.breakpoints.down(600));
+    const isMobile = useMediaQuery(theme.breakpoints.down(1024));
     const isComputer = useMediaQuery(theme.breakpoints.up(1024));
     const { fetchListReviewInfor, listReviewInfo } = reviewStore;
     const [itemActive, setItemActive] = useState(1);
@@ -33,7 +31,7 @@ const ReviewPage = observer(() => {
         setItemActive(item.index)
         fetchListReviewInfor(code, article)
     }
-    // console.log("data infor", toJS(listReviewInfo));
+
     return (
         <div className='review-infor'>
             <div className='list-info'>
@@ -54,47 +52,34 @@ const ReviewPage = observer(() => {
             {
                 isShowData
                 &&
-                <div className='list-review-infor'>
+                <div className={classNames("list-review-infor", isMobile ? "list-review-infor-mobile" : "")}>
                     {
-                        (listReviewInfo).slice(0, 4).map((item: any) => {
+                        toJS(listReviewInfo).slice(0, 4).map((item: any, index) => {
+                            console.log("Item", item)
                             return (
-                                <div className='list-item'>
-                                    <div className='item-image'>
-                                        <img src={item.img} />
-                                    </div>
-                                    <div className='item-title'>
-                                        {item.title}
-                                    </div>
-                                    <div className='item-text'>
-                                        {/* {item.text} */}
-                                        abcd
-                                    </div>
+                                <div className={classNames(`item-${index + 1}`, 'item')}>
+                                    <img src={item.img} />
+                                    <p className='title'> {item.title}</p>
+                                    <p className='desc'> {item.text}</p>
                                 </div>
                             )
                         })
                     }
-                    <div className='list-review-child'>
+                    <div className='item-5 item'>
                         {
-                            (listReviewInfo).slice(0, 4).map((item: any) => {
+                            toJS(listReviewInfo).slice(4, 8).map((item: any, index) => {
                                 return (
-                                    <div>
-                                        <div className='item-image'>
-                                            <img src={item.img} />
+                                    <div className='list-item'>
+                                        <div className='block-1'>
+                                            IMG
+                                            {/* <img src={item.img} /> */}
                                         </div>
-                                        <div className='item-title'>
-                                            {item.title}
-                                        </div>
-                                        <div className='item-text'>
-                                            {/* {item.text} */}
-                                            text
-                                        </div>
+                                        <div className='title'> {item.title}</div>
                                     </div>
                                 )
                             })
                         }
                     </div>
-
-
                 </div>
             }
             <button className='btn-button-show' onClick={() => setIsShowData(!isShowData)}>{!isShowData ? "Xem thêm" : "Rút gọn"} </button>

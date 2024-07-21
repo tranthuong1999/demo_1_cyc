@@ -19,7 +19,7 @@ const data = [
 
 const DownloadApp = () => {
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down(600));
+    const isMobile = useMediaQuery(theme.breakpoints.down(900));
 
     const renderSlider = (data: any[]) => {
         return data.map((item: any) => {

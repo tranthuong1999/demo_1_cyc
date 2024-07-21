@@ -7,6 +7,31 @@ import icon_zalo from "../../assets/icon-zalo.png"
 import icon_human from "../../assets/icon-human.png"
 import icon_apple from "../../assets/icon-apple.png"
 
+import logoFooter_1 from "../../assets/logo_1.png"
+import logoFooter_2 from "../../assets/logo_2.png"
+import logoFooter_3 from "../../assets/logo_3.png"
+import logoFooter_4 from "../../assets/logo_4.png"
+import logoFooter_5 from "../../assets/logo_5.png"
+import logoFooter_6 from "../../assets/logo_6.png"
+import logoFooter_7 from "../../assets/logo_7.jpeg"
+import logoFooter_8 from "../../assets/logo_8.png"
+import logoFooter_9 from "../../assets/logo_9.png"
+import logoFooter_10 from "../../assets/logo_10.jpeg"
+import logoFooter_11 from "../../assets/logo_11.png"
+import logoFooter_12 from "../../assets/logo_12.png"
+import logoFooter_13 from "../../assets/logo_13.png"
+import logoFooter_14 from "../../assets/logo_14.png"
+import logoFooter_15 from "../../assets/logo_15.png"
+import logoFooter_16 from "../../assets/logo_16.png"
+import logoFooter_17 from "../../assets/logo_17.png"
+import logoFooter_18 from "../../assets/logo_18.png"
+import logoFooter_19 from "../../assets/logo_19.png"
+import logoFooter_20 from "../../assets/logo_20.jpeg"
+
+
+
+
+
 import { useTheme } from "@mui/material/styles";
 import classNames from "classnames";
 import { useMediaQuery } from "@mui/material";
@@ -33,28 +58,34 @@ export const FooterPage = () => {
                     <div className='block-1-doi-tac'>
                         <h6 className='title-footer'> ĐỐI TÁC</h6>
                         <div className='list-image'>
-                            <img src={icon_apple} />
-                            <img src={icon_human} />
-                            <img src={icon_fb} />
-                            <img src={icon_zalo} />
+                            <img src={logoFooter_2} />
+                            <img src={logoFooter_1} />
+                            <img src={logoFooter_3} />
+                            <img src={logoFooter_4} />
                         </div>
                         <div className='list-image'>
-                            <img src={icon_apple} />
-                            <img src={icon_human} />
-                            <img src={icon_fb} />
-                            <img src={icon_zalo} />
+                            <img src={logoFooter_5} />
+                            <img src={logoFooter_6} />
+                            <img src={logoFooter_7} />
+                            <img src={logoFooter_8} />
                         </div>
                         <div className='list-image'>
-                            <img src={icon_apple} />
-                            <img src={icon_human} />
-                            <img src={icon_fb} />
-                            <img src={icon_zalo} />
+                            <img src={logoFooter_9} />
+                            <img src={logoFooter_10} />
+                            <img src={logoFooter_11} />
+                            <img src={logoFooter_12} />
                         </div>
                         <div className='list-image'>
-                            <img src={icon_apple} />
-                            <img src={icon_human} />
-                            <img src={icon_fb} />
-                            <img src={icon_zalo} />
+                            <img src={logoFooter_13} />
+                            <img src={logoFooter_14} />
+                            <img src={logoFooter_15} />
+                            <img src={logoFooter_16} />
+                        </div>
+                        <div className='list-image'>
+                            <img src={logoFooter_17} />
+                            <img src={logoFooter_18} />
+                            <img src={logoFooter_19} />
+                            <img src={logoFooter_20} />
                         </div>
                     </div>
                     <div className='block-1-social'>
