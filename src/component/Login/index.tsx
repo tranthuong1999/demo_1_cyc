@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import BasicModal from '../Modal';
 import authenticationStore from '../../store/AuthenticationStore';
@@ -7,7 +7,9 @@ import { Checkbox, IconButton, InputAdornment, OutlinedInput, TextField } from '
 import "./style.scss";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { Link } from 'react-router-dom';
+import MenuPage from '../Menu';
+import bgr_login from '../../assets/bgr-main.jpg'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -17,6 +19,14 @@ const LoginPage = observer(() => {
     const { apiLogin, openModalLogin, setOpenModalLogin, isLoginErr, setOpenModalRegister } = authenticationStore;
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const navigate = useNavigate();
+    const currentUer = localStorage.getItem("currentUser")
+
+    useEffect(() => {
+        if (currentUer) {
+            navigate("/")
+        }
+    }, [currentUer])
 
     const handleChange = (e: any) => {
         setCredentials({
@@ -75,8 +85,9 @@ const LoginPage = observer(() => {
                     <div className='sign-up'>
                         <button className='btn-signup'
                             onClick={() => {
-                                setOpenModalRegister(true)
-                            }}>
+                                navigate("/sign-up")
+                            }}
+                        >
                             Bạn chưa có tài khoản? Đăng ký
                         </button>
                     </div>
@@ -84,13 +95,19 @@ const LoginPage = observer(() => {
             </form>
         )
     }
+    console.log("openModalLogin", openModalLogin)
 
     return (
-        <BasicModal
-            open={openModalLogin}
-            onClose={() => setOpenModalLogin(false)}
-            content={renderFormLogin()}
-        />
+        <div className="bgr-login">
+            <img src={bgr_login} style={{ width: "100%", minHeight: "1100px", objectFit: "cover" }} />
+            <MenuPage />
+            <BasicModal
+                open={true}
+                onClose={() => setOpenModalLogin(false)}
+                content={renderFormLogin()}
+            />
+        </div>
+
     );
 });
 

@@ -49,6 +49,7 @@ const MoviePage = observer(() => {
     const [runVideo, setRunVideo] = useState<any>()
 
 
+
     function getNgayChieuGioChieuByTenCumRap(tenCumRap: string) {
         const result: any = [];
         data.heThongRapChieu.forEach(heThong => {
@@ -127,7 +128,14 @@ const MoviePage = observer(() => {
                                         <p className='item-movie-desc'>
                                             {movie.moTa}
                                         </p>
-                                        <button className={classNames('btn-buy-ticket', (isTabnet || isComputer) ? "btn-buy-ticket-large" : "")}> Mua vé</button>
+                                        <div onClick={(e: any) => {
+                                            e.stopPropagation()
+                                            // navigate("/purchase-ticket")
+                                        }}>
+                                            <button className={classNames('btn-buy-ticket', (isTabnet || isComputer) ? "btn-buy-ticket-large" : "")}                                            >
+                                                Mua vé
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             )
@@ -199,7 +207,9 @@ const MoviePage = observer(() => {
                     </FormControl>
                 </div>
                 <div className='block-2'>
-                    <Button> Mua vé ngay</Button>
+                    <Button>
+                        Mua vé ngay
+                    </Button>
                 </div>
 
             </div>

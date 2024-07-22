@@ -21,7 +21,7 @@ import authenticationStore from '../../store/AuthenticationStore';
 import { observer } from 'mobx-react-lite';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import LogoutPage from '../Logout';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import { useNavigate } from 'react-router-dom';
 
 const dataMenu = [
     { title: "Lịch chiếu", linkTo: "schedule" },
@@ -45,6 +45,7 @@ const MenuPage = observer(() => {
     const isMobile = useMediaQuery(theme.breakpoints.down(600));
     const isTabnet = useMediaQuery(theme.breakpoints.between(600, 1024));
     const { openModalLogin, setOpenModalLogin, openModalLogout, openModalRegister, setOpenModalRegister, setOpenModalLogout, setIsLoginError } = authenticationStore;
+    const navigate = useNavigate();
 
     const currentUer = JSON?.parse(localStorage?.getItem("currentUser")!)
 
@@ -53,6 +54,13 @@ const MenuPage = observer(() => {
     const toggleDrawer = (newOpen: boolean) => () => {
         setOpen(newOpen);
     };
+
+    const handleLogin = () => {
+        navigate("/sign-in")
+    }
+    const handleRegister =() =>{
+        navigate("/sign-up")
+    }
 
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
@@ -63,16 +71,17 @@ const MenuPage = observer(() => {
                         disablePadding
                         onClick={() => {
                             if (text == 'Đăng nhập') {
-                                setOpenModalLogin(true)
-                                setOpenModalRegister(false)
+                                navigate("/sign-in")
+                                return;
+                            }
+                            if (text == 'Đăng kí') {
+                                navigate("/sign-up")
                                 return;
                             }
                             if (text == "Đăng xuất") {
                                 setOpenModalLogout(true)
                                 return;
                             }
-                            setOpenModalRegister(true);
-                            setOpenModalLogin(false)
                         }}
                     >
                         <ListItemButton sx={{ '&:hover': styleMenu }}>
@@ -136,9 +145,9 @@ const MenuPage = observer(() => {
                                         !currentUer ?
                                             (
                                                 <>
-                                                    <Button startIcon={<AccountCircleIcon />} className='btn btn-login' onClick={() => { setOpenModalLogin(true); setOpenModalRegister(false); setIsLoginError(false) }}> Đăng nhập</Button>
+                                                    <Button startIcon={<AccountCircleIcon />} className='btn btn-login' onClick={handleLogin}> Đăng nhập</Button>
                                                     <span style={border_right}></span>
-                                                    <Button startIcon={<AccountCircleIcon />} className='btn' onClick={() => { setOpenModalRegister(true); setOpenModalLogin(false); setIsLoginError(false) }}>Đăng kí</Button>
+                                                    <Button startIcon={<AccountCircleIcon />} className='btn' onClick={handleRegister}>Đăng kí</Button>
                                                 </>
                                             ) : (
                                                 <>

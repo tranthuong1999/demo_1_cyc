@@ -7,6 +7,10 @@ import { IconButton, InputAdornment, OutlinedInput, TextField } from '@mui/mater
 import "./style.scss";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import DoneIcon from '@mui/icons-material/Done';
+import MenuPage from '../Menu';
+import bgr_login from '../../assets/bgr-main.jpg'
+import { useNavigate } from 'react-router-dom';
+
 
 const RegisterPage = observer(() => {
     const [credentials, setCredentials] = useState({
@@ -18,10 +22,11 @@ const RegisterPage = observer(() => {
         maLoaiNguoiDung: "",
         maNhom: "GP09",
     });
-    const { apiRegister,setOpenModalLogin, openModalRegister, setOpenModalRegister } = authenticationStore;
+    const { apiRegister, setOpenModalLogin, openModalRegister, setOpenModalRegister } = authenticationStore;
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const [registerSucess, setRegisterSucess] = useState(false)
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (registerSucess) {
@@ -125,7 +130,11 @@ const RegisterPage = observer(() => {
                     />
                     <button className='btn-login' type="submit">Đăng ký</button>
                     <div className='sign-up'>
-                        <button onClick={() =>{ setOpenModalLogin(true);setOpenModalRegister(false)}} className='btn-signup'>Bạn đã có tài khoản? Đăng nhập</button>
+                        <button
+                            onClick={() => navigate('/sign-in')}
+                            className='btn-signup'>
+                            Bạn đã có tài khoản? Đăng nhập
+                        </button>
                     </div>
                 </div>
             </form>
@@ -144,8 +153,10 @@ const RegisterPage = observer(() => {
 
     return (
         <div>
+            <img src={bgr_login} style={{ width: "100%", minHeight: "1100px", objectFit: "cover" }} />
+            <MenuPage />
             <BasicModal
-                open={openModalRegister}
+                open={true}
                 onClose={() => setOpenModalRegister(false)}
                 content={renderFormRegister()}
             />
