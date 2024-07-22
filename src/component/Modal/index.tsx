@@ -44,6 +44,7 @@ export default function BasicModal(props: { open: boolean, onClose?: () => void,
                 {
                     urlVideo ? (
                         <ReactPlayer
+                            playing={true}
                             // @ts-ignore
                             url={urlVideo}
                             className={classNames('video-youtube', isTabnet ? "video-youtube-tabnet" : "", isMobile ? "video-youtube-mobile" : "")}
