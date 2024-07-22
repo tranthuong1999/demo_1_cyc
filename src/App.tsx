@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RegisterPage from './component/Register';
 import LoginPage from './component/Login';
 import PurchasePage from './component/Purchase';
+import DownloadApp from './component/DonwloadApp';
 
 const MainLayout = () => {
   const theme = useTheme();
@@ -34,6 +35,9 @@ const MainLayout = () => {
       <Element name="news">
         <ReviewPage />
       </Element>
+      <Element name="app">
+        <DownloadApp />
+      </Element>
       <FooterPage />
     </>
   );
@@ -44,7 +48,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<MainLayout />} />
-        <Route path="/purchase-ticket" element={<PurchasePage />} />
+        <Route path="/ticket/:codeMovie" element={<PurchasePage />} />
         <Route path="/sign-in" element={<LoginPage />} />
         <Route path="/sign-up" element={<RegisterPage />} />
       </Routes>

@@ -19,7 +19,7 @@ const SystemCinema = observer(() => {
 
     useEffect(() => {
         fetchListSystemCinema()
-    }, [fetchListSystemCinema])
+    }, [])
 
     useEffect(() => {
         if (!listSheduleCinemaSystem.length) {

@@ -19,6 +19,8 @@ import moment from 'moment';
 import SearchIcon from '@mui/icons-material/Search';
 import IconPlay from '../../assets/icon-play.png'
 import BasicModal from '../Modal';
+import { useNavigate } from 'react-router-dom';
+import { toJS } from 'mobx';
 
 
 type Movie = {
@@ -47,6 +49,7 @@ const MoviePage = observer(() => {
     const [searchNameMovie, setSearchMovie] = useState<string | null>(null);
     const [isSearch, setIsSearch] = useState<string | null>(null);
     const [runVideo, setRunVideo] = useState<any>()
+    const navigate = useNavigate()
 
 
 
@@ -112,7 +115,7 @@ const MoviePage = observer(() => {
             <SwiperSlide>
                 <div className={classNames('list-movie', isTabnet ? "list-movie-tabnet" : "", isMobile ? "list-movie-mobile" : "")}>
                     {
-                        ((searchName) ? listMovie.filter((movie: Movie) => movie.tenPhim.toLowerCase().includes(searchName.toLowerCase())) : listMovie?.slice(startIndex, endIndex)).map((movie: Movie) => {
+                        ((searchName) ? toJS(listMovie).filter((movie: Movie) => movie.tenPhim.toLowerCase().includes(searchName.toLowerCase())) : toJS(listMovie)?.slice(startIndex, endIndex)).map((movie: Movie) => {
                             return (
                                 <div className={classNames('item-movie', isMobile ? "item-movie-mobile" : "")} onClick={() => setRunVideo(movie.trailer)}>
                                     <div className='item-movie-image'>
@@ -130,7 +133,8 @@ const MoviePage = observer(() => {
                                         </p>
                                         <div onClick={(e: any) => {
                                             e.stopPropagation()
-                                            // navigate("/purchase-ticket")
+                                            navigate(`/ticket/${movie.maPhim}`, { state: { data: movie } });
+
                                         }}>
                                             <button className={classNames('btn-buy-ticket', (isTabnet || isComputer) ? "btn-buy-ticket-large" : "")}                                            >
                                                 Mua vé

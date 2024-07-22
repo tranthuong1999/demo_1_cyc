@@ -23,6 +23,7 @@ class MovieStore {
         try {
             const response = await fetch(`${BASE_URL}/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieCode}`);
             const data: any = await response.json();
+            console.log("fetchListCinema", data)
             this.listCinema = data;
         }
         catch (error) {

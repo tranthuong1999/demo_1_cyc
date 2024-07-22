@@ -20,14 +20,6 @@ const data = [
 const DownloadApp = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down(900));
-
-    const renderSlider = (data: any[]) => {
-        return data.map((item: any) => {
-            return (
-                <SwiperSlide>{item}</SwiperSlide>
-            )
-        })
-    }
     return (
         <div className={classNames('download-app', isMobile ? "download-app-mobile" : "")}>
             <div className={classNames('list-content', isMobile ? "list-content-mobile" : "")}>
@@ -57,7 +49,6 @@ const DownloadApp = () => {
                                 disableOnInteraction: false,
                             }}
                         >
-                            {/* {renderSlider(data)} */}
                             <SwiperSlide>
                                 <img src="https://demo1.cybersoft.edu.vn/static/media/banner-slider-2.454924ec.jpg" />
                             </SwiperSlide>
