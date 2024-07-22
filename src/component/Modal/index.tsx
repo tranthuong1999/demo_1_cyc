@@ -9,7 +9,6 @@ import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 // box ? : tại sao không thêm được class vào box
-
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',

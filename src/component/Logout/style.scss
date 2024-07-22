@@ -1,0 +1,55 @@
+.logout-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    .title {
+        min-width: 400px;
+        margin: 0 0 .4em;
+        padding: 0;
+        color: #595959;
+        // font-size: 1.875em;
+        font-weight: 600;
+        text-align: center;
+        text-transform: none;
+        word-wrap: break-word;
+        font-size: 25px;
+
+    }
+
+    .list-button {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+
+        .btn {
+            border: 0;
+            border-radius: .25em;
+            background: initial;
+            color: #fff;
+            font-size: 16px;
+            padding: 8px 16px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .btn-confirm {
+            background-color: #2778c4;
+
+            &:hover {
+                background-image: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1));
+            }
+        }
+
+        .btn-cancel {
+            background-color: #757575;
+
+            &:hover {
+                background-image: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1));
+            }
+        }
+    }
+}

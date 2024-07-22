@@ -21,6 +21,8 @@ class AuthenticationStore {
     userInfo = {};
     openModalLogin: boolean = false;
     openModalRegister: boolean = false;
+    isLoginErr: boolean = false;
+    openModalLogout: boolean = false;
     userInfoErr: any = {}
     constructor() {
         makeAutoObservable(this);
@@ -28,6 +30,12 @@ class AuthenticationStore {
 
     setOpenModalLogin = (status: boolean) => {
         this.openModalLogin = status;
+    }
+    setIsLoginError = (status: boolean) => {
+        this.isLoginErr = status;
+    }
+    setOpenModalLogout = (status: boolean) => {
+        this.openModalLogout = status;
     }
 
     setOpenModalRegister = (status: boolean) => {
@@ -46,10 +54,11 @@ class AuthenticationStore {
             });
             const result: any = await response.json();
             this.currentUser = result;
+            this.isLoginErr = false;
             localStorage.setItem("currentUser", JSON.stringify(result));
         }
         catch (error) {
-            console.error('Failed to fetch', error);
+            this.isLoginErr = true;
         }
     }
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./style.scss";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useTheme } from "@mui/material/styles";
-import { Button, useMediaQuery } from "@mui/material";
+import { Avatar, Button, useMediaQuery } from "@mui/material";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -19,6 +19,9 @@ import LoginPage from '../Login';
 import RegisterPage from '../Register';
 import authenticationStore from '../../store/AuthenticationStore';
 import { observer } from 'mobx-react-lite';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import LogoutPage from '../Logout';
+import { deepOrange, deepPurple } from '@mui/material/colors';
 
 const dataMenu = [
     { title: "Lịch chiếu", linkTo: "schedule" },
@@ -36,7 +39,9 @@ const MenuPage = observer(() => {
     const isComputer = useMediaQuery(theme.breakpoints.up(1024));
     const isMobile = useMediaQuery(theme.breakpoints.down(600));
     const isTabnet = useMediaQuery(theme.breakpoints.between(600, 1024));
-    const { openModalLogin, setOpenModalLogin, openModalRegister, setOpenModalRegister } = authenticationStore;
+    const { openModalLogin, setOpenModalLogin, openModalLogout, openModalRegister, setOpenModalRegister, setOpenModalLogout, setIsLoginError } = authenticationStore;
+
+    const currentUer = JSON?.parse(localStorage?.getItem("currentUser")!)
 
     const [open, setOpen] = React.useState(false);
 
@@ -47,16 +52,22 @@ const MenuPage = observer(() => {
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
             <List>
-                {['Đăng nhập', 'Đăng kí'].map((text, index) => (
+                {(!currentUer ? ['Đăng nhập', 'Đăng kí'] : [`${currentUer?.hoTen}`, "Đăng xuất"]).map((text, index) => (
                     <ListItem
                         key={text}
                         disablePadding
                         onClick={() => {
                             if (text == 'Đăng nhập') {
                                 setOpenModalLogin(true)
+                                setOpenModalRegister(false)
+                                return;
+                            }
+                            if (text == "Đăng xuất") {
+                                setOpenModalLogout(true)
                                 return;
                             }
                             setOpenModalRegister(true);
+                            setOpenModalLogin(false)
                         }}
                     >
                         <ListItemButton sx={{ '&:hover': styleMenu }}>
@@ -116,8 +127,21 @@ const MenuPage = observer(() => {
                                     </button>
                                 </div>
                                 <div className='event-user'>
-                                    <Button startIcon={<AccountCircleIcon />} className='btn btn-login' onClick={() => setOpenModalLogin(true)}> Đăng nhập</Button>
-                                    <Button startIcon={<AccountCircleIcon />} className='btn' onClick={() => setOpenModalRegister(true)}>Đăng kí</Button>
+                                    {
+                                        !currentUer ?
+                                            (
+                                                <>
+                                                    <Button startIcon={<AccountCircleIcon />} className='btn btn-login' onClick={() => { setOpenModalLogin(true); setOpenModalRegister(false); setIsLoginError(false) }}> Đăng nhập</Button>
+                                                    <Button startIcon={<AccountCircleIcon />} className='btn' onClick={() => { setOpenModalRegister(true); setOpenModalLogin(false); setIsLoginError(false) }}>Đăng kí</Button>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Avatar src="https://mui.com/static/images/avatar/1.jpg" /><span className='current-user'>{currentUer?.hoTen} </span>
+                                                    <Button startIcon={<ArrowCircleRightIcon />} className='btn' onClick={() => setOpenModalLogout(true)}> Đăng xuất </Button>
+                                                </>
+                                            )
+                                    }
+
                                 </div>
                             </>
                         )
@@ -141,6 +165,9 @@ const MenuPage = observer(() => {
             {
                 openModalRegister &&
                 <RegisterPage />
+            }
+            {
+                openModalLogout && <LogoutPage />
             }
         </div >
     )

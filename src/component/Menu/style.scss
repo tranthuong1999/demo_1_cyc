@@ -41,6 +41,24 @@
         .event-user {
             display: flex;
             gap: 20px;
+            align-items: center;
+
+            .current-user {
+                overflow: hidden;
+                max-width: 200px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-size: 22px;
+                font-weight: 500;
+                line-height: 1.167;
+                text-transform: capitalize;
+                color: #9e9e9e !important;
+
+                &:hover {
+                    color: #fb4226 !important;
+                    cursor: pointer;
+                }
+            }
 
             button {
                 font-size: 16px !important;
