@@ -7,12 +7,14 @@ import { Checkbox, IconButton, InputAdornment, OutlinedInput, TextField } from '
 import "./style.scss";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import { Link } from 'react-router-dom';
+
 
 
 
 const LoginPage = observer(() => {
     const [credentials, setCredentials] = useState({ taiKhoan: '', matKhau: '' });
-    const { apiLogin, openModalLogin, setOpenModalLogin, isLoginErr } = authenticationStore;
+    const { apiLogin, openModalLogin, setOpenModalLogin, isLoginErr, setOpenModalRegister } = authenticationStore;
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -71,7 +73,12 @@ const LoginPage = observer(() => {
                     {isLoginErr && <div className='login-error'><ErrorOutlineIcon sx={{ color: "red", mr: 1 }} />Tài khoản hoặc mật khẩu không đúng!</div>}
                     <button className='btn-login' type="submit">Đăng nhập</button>
                     <div className='sign-up'>
-                        <a href=""> Bạn chưa có tài khoản? Đăng ký</a>
+                        <button className='btn-signup'
+                            onClick={() => {
+                                setOpenModalRegister(true)
+                            }}>
+                            Bạn chưa có tài khoản? Đăng ký
+                        </button>
                     </div>
                 </div>
             </form>

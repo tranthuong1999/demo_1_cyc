@@ -18,7 +18,7 @@ const RegisterPage = observer(() => {
         maLoaiNguoiDung: "",
         maNhom: "GP09",
     });
-    const { apiRegister, userInfoErr, openModalRegister, setOpenModalRegister } = authenticationStore;
+    const { apiRegister,setOpenModalLogin, openModalRegister, setOpenModalRegister } = authenticationStore;
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const [registerSucess, setRegisterSucess] = useState(false)
@@ -125,7 +125,7 @@ const RegisterPage = observer(() => {
                     />
                     <button className='btn-login' type="submit">Đăng ký</button>
                     <div className='sign-up'>
-                        <a href="">Bạn đã có tài khoản? Đăng nhập</a>
+                        <button onClick={() =>{ setOpenModalLogin(true);setOpenModalRegister(false)}} className='btn-signup'>Bạn đã có tài khoản? Đăng nhập</button>
                     </div>
                 </div>
             </form>

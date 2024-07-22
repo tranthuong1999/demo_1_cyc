@@ -25,12 +25,24 @@
         min-width: 400px;
         justify-content: end;
 
-        a {
+        .btn-signup {
+            border: none;
+            text-decoration: underline;
             font-size: 16px;
-            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-            font-weight: 500;
             line-height: 1.167;
+            color: purple;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
+
+        // a {
+        //     font-size: 16px;
+        //     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        //     font-weight: 500;
+        //     line-height: 1.167;
+        // }
     }
 
     .login-error {
@@ -47,7 +59,8 @@
         align-items: center;
 
     }
-    .remember-account{
+
+    .remember-account {
         min-width: 400px;
         display: flex;
         align-items: center;

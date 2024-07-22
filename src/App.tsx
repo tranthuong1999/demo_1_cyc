@@ -11,9 +11,9 @@ import { useTheme } from "@mui/material/styles";
 import { Button, useMediaQuery } from "@mui/material";
 // @ts-ignore
 import { Element } from 'react-scroll';
-// import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-// import RegisterPage from './component/Register';
-// import LoginPage from './component/Login';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import RegisterPage from './component/Register';
+import LoginPage from './component/Login';
 
 function App() {
 
@@ -40,6 +40,12 @@ function App() {
         <DownloadApp />
       </Element>
       <FooterPage />
+      <Router>
+        <Routes>
+          <Route path="/sign-in" element={<LoginPage />} />
+          <Route path="/sign-up" element={<RegisterPage />} />
+        </Routes>
+      </Router>
     </>
   );
 }

@@ -33,6 +33,11 @@ const styleMenu = {
     color: 'red',
     backgroundColor: "#fff"
 }
+const border_right = {
+    width: "1px",
+    height: "40px",
+    backgroundColor: "rgba(0, 0, 0, 0.12)"
+}
 
 const MenuPage = observer(() => {
     const theme = useTheme();
@@ -132,11 +137,13 @@ const MenuPage = observer(() => {
                                             (
                                                 <>
                                                     <Button startIcon={<AccountCircleIcon />} className='btn btn-login' onClick={() => { setOpenModalLogin(true); setOpenModalRegister(false); setIsLoginError(false) }}> Đăng nhập</Button>
+                                                    <span style={border_right}></span>
                                                     <Button startIcon={<AccountCircleIcon />} className='btn' onClick={() => { setOpenModalRegister(true); setOpenModalLogin(false); setIsLoginError(false) }}>Đăng kí</Button>
                                                 </>
                                             ) : (
                                                 <>
                                                     <Avatar src="https://mui.com/static/images/avatar/1.jpg" /><span className='current-user'>{currentUer?.hoTen} </span>
+                                                    <span style={border_right}></span>
                                                     <Button startIcon={<ArrowCircleRightIcon />} className='btn' onClick={() => setOpenModalLogout(true)}> Đăng xuất </Button>
                                                 </>
                                             )

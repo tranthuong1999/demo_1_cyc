@@ -25,8 +25,16 @@
             min-width: 400px;
             justify-content: end;
 
-            a {
+            .btn-signup {
+                border: none;
+                text-decoration: underline;
                 font-size: 16px;
+                line-height: 1.167;
+                color: purple;
+
+                &:hover {
+                    cursor: pointer;
+                }
             }
         }
 
@@ -76,6 +84,7 @@
             letter-spacing: 0.02857em;
             text-transform: uppercase;
             transition: 0.4s;
+
             &:hover {
                 cursor: pointer;
                 background-color: rgb(175, 46, 26);
