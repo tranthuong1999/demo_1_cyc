@@ -143,7 +143,7 @@ const MoviePage = observer(() => {
             <div className={classNames('search-movie', isTabnet ? "search-movie-tabnet" : "")}>
                 <div className='block-1'>
                     <FormControl fullWidth variant="standard">
-                        <InputLabel id="demo-simple-select-label">Phim</InputLabel>
+                        <InputLabel sx={{ paddingLeft: "20px" }}>Phim</InputLabel>
                         <Select
                             id="select-movie"
                             value={movie}
@@ -162,7 +162,7 @@ const MoviePage = observer(() => {
                 </div>
                 <div className='block-1'>
                     <FormControl fullWidth variant="standard">
-                        <InputLabel id="demo-simple-select-label" >Rạp</InputLabel>
+                        <InputLabel sx={{ paddingLeft: "20px" }}>Rạp</InputLabel>
                         <Select
                             value={nameCinema}
                             label="Rạp"
@@ -182,7 +182,7 @@ const MoviePage = observer(() => {
                 </div>
                 <div className='block-1' >
                     <FormControl fullWidth variant="standard">
-                        <InputLabel id="demo-simple-select-label">Ngày giờ chiếu</InputLabel>
+                        <InputLabel sx={{ paddingLeft: "20px" }}>Ngày giờ chiếu</InputLabel>
                         <Select
                             value={dayShow}
                             label="Ngày giờ chiếu"

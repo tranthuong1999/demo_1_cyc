@@ -18,16 +18,16 @@ export default function IntroducePage() {
     const [isRunSlide, setIsRunSlide] = useState(false)
 
     useEffect(() => {
-        // if (!isRunSlide) {
-        //     // @ts-ignore
-        //     const swiperInstance = swiperRef?.current?.swiper
-        //     const interval = setInterval(() => {
-        //         if (swiperInstance) {
-        //             swiperInstance.slideNext();
-        //         }
-        //     }, 5000);
-        //     return () => clearInterval(interval);
-        // }
+        if (!isRunSlide) {
+            // @ts-ignore
+            const swiperInstance = swiperRef?.current?.swiper
+            const interval = setInterval(() => {
+                if (swiperInstance) {
+                    swiperInstance.slideNext();
+                }
+            }, 5000);
+            return () => clearInterval(interval);
+        }
     }, [swiperRef?.current, isRunSlide]);
 
 
