@@ -123,6 +123,7 @@ class MovieStore {
     }
 
     apiFetchHistoryBookTicker = async (tuKhoa: string) => {
+        const token = JSON.parse(localStorage.getItem("currentUser")!).accessToken
         try {
             const response = await fetch(`${BASE_URL}/QuanLyNguoiDung/ThongTinTaiKhoa`, {
                 method: 'POST',
@@ -130,7 +131,7 @@ class MovieStore {
                     'Content-Type': 'application/json',
                     // 'Authorization': `Bearer ${token}`,
                 },
-                body: JSON.stringify(tuKhoa),
+                body: JSON.stringify({ taiKhoan:tuKhoa }),
             });
             const data: any = await response.json();
             this.listHistoryBooking = data;

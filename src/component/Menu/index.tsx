@@ -58,7 +58,7 @@ const MenuPage = observer(() => {
     const handleLogin = () => {
         navigate("/sign-in")
     }
-    const handleRegister =() =>{
+    const handleRegister = () => {
         navigate("/sign-up")
     }
 
@@ -151,7 +151,13 @@ const MenuPage = observer(() => {
                                                 </>
                                             ) : (
                                                 <>
-                                                    <Avatar src="https://mui.com/static/images/avatar/1.jpg" /><span className='current-user'>{currentUer?.hoTen} </span>
+                                                    <Avatar src="https://mui.com/static/images/avatar/1.jpg"
+                                                    />
+                                                    <span
+                                                        onClick={() => navigate("/account")}
+                                                        className='current-user'>
+                                                        {currentUer?.hoTen}
+                                                    </span>
                                                     <span style={border_right}></span>
                                                     <Button startIcon={<ArrowCircleRightIcon />} className='btn' onClick={() => setOpenModalLogout(true)}> Đăng xuất </Button>
                                                 </>

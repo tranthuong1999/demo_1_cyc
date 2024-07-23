@@ -22,7 +22,7 @@ const style = {
     outline: 0,
     border: null,
     borderRadius: 1,
-    backgroundColor: " #fff"
+    backgroundColor: " #fff",
 };
 
 export default function BasicModal(props: { open: boolean, onClose?: () => void, width?: string, urlVideo?: string, content?: any }) {

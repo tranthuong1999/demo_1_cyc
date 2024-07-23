@@ -152,11 +152,12 @@ const BookTicketPage = observer(() => {
                 </div>
                 <div className='item-child item-seminar'>
                     <h3 className='name-left'>Chọn:</h3>
+                    Ghế:
                     {
-                        toJS(listTicketBook).map((item: any) => {
+                        toJS(listTicketBook).map((item: any, index: any) => {
                             return (
                                 <div className='list-table'>
-                                    Ghế {item.tenGhe}
+                                    {item.tenGhe}{index < listTicketBook.length - 1 ? "," : ""}
                                 </div>
                             )
                         })
