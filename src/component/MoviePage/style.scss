@@ -6,7 +6,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 15px;
-
+        margin-top: 90px;
         .input-search-movie {
             position: relative;
             outline: none;
@@ -64,6 +64,7 @@
             #demo-simple-select-label {
                 color: black !important;
             }
+
             &::after {
                 width: 1px;
                 height: 50%;
