@@ -8,6 +8,7 @@ import { Box, Modal } from '@mui/material';
 import moment from 'moment';
 import movieStore from '../../store/MovieStore';
 import { useEffect } from 'react';
+import { toJS } from 'mobx';
 
 const HistoryTickerPage = observer(() => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser")!);
@@ -29,7 +30,7 @@ const HistoryTickerPage = observer(() => {
                     <h3 className='title'>Lịch sử đặt vé</h3>
                     <div className='list-ticket'>
                         {
-                            data?.thongTinDatVe?.map((item: any, index: number) => {
+                            listHistoryBooking?.thongTinDatVe?.map((item: any, index: number) => {
                                 console.log(`item ${index}`, item)
                                 return (
                                     <div className='item-ticket'>

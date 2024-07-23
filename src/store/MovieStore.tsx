@@ -123,15 +123,14 @@ class MovieStore {
     }
 
     apiFetchHistoryBookTicker = async (tuKhoa: string) => {
-        const token = JSON.parse(localStorage.getItem("currentUser")!).accessToken
         try {
-            const response = await fetch(`${BASE_URL}/QuanLyNguoiDung/ThongTinTaiKhoa`, {
+            const response = await fetch(`https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     // 'Authorization': `Bearer ${token}`,
                 },
-                body: JSON.stringify({ taiKhoan:tuKhoa }),
+                body: JSON.stringify({ "taiKhoan":tuKhoa }),
             });
             const data: any = await response.json();
             this.listHistoryBooking = data;
