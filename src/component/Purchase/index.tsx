@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./style.scss"
 import MenuPage from '../Menu';
 import { Rating } from '@mui/material';
@@ -23,7 +23,7 @@ const PurchasePage = observer(() => {
     const { codeMovie } = useParams();
     const { fetchListCinema, listCinema } = movieStore;
     const { trailer, hinhAnh, ngayKhoiChieu, tenPhim, danhGia } = listCinema;
-    const [codeCinema, setCodeCinema] = useState(toJS(listCinema).heThongRapChieu[0].maHeThongRap)
+    const [codeCinema, setCodeCinema] = useState(toJS(listCinema)?.heThongRapChieu[0]?.maHeThongRap)
 
     useEffect(() => {
         fetchListCinema(Number(codeMovie))
@@ -31,7 +31,7 @@ const PurchasePage = observer(() => {
 
 
     function getCumRapAndShowtimes(maHeThongRap: any, data: any) {
-        const heThongRap = data.heThongRapChieu.find((rap: any) => rap.maHeThongRap === maHeThongRap);
+        const heThongRap = data?.heThongRapChieu?.find((rap: any) => rap.maHeThongRap === maHeThongRap);
         if (!heThongRap) {
             return [];
         }
@@ -39,16 +39,17 @@ const PurchasePage = observer(() => {
             return cumRap.lichChieuPhim.map((lichChieu: any) => {
                 return {
                     tenCumRap: cumRap.tenCumRap,
-                    ngayChieuGioChieu: lichChieu.ngayChieuGioChieu
+                    ngayChieuGioChieu: lichChieu.ngayChieuGioChieu,
+                    maLichChieu: lichChieu.maLichChieu
                 };
             });
         }).flat()
             .reduce((acc: any, current: any) => {
                 const existing = acc.find((item: any) => item.tenCumRap === current.tenCumRap);
                 if (existing) {
-                    existing.ngayChieuGioChieu.push(current.ngayChieuGioChieu);
+                    existing.ngayChieu.push({ ngayChieu: current.ngayChieuGioChieu, maLichChieu: current.maLichChieu });
                 } else {
-                    acc.push({ tenCumRap: current.tenCumRap, ngayChieuGioChieu: [current.ngayChieuGioChieu] });
+                    acc.push({ tenCumRap: current.tenCumRap, ngayChieu: [{ ngayChieu: current.ngayChieuGioChieu, maLichChieu: current.maLichChieu }] });
                 }
                 return acc;
             }, []);
@@ -87,7 +88,7 @@ const PurchasePage = observer(() => {
             <div className="list-cinema">
                 <div className='list-cinema-block-1'>
                     {
-                        toJS(listCinema).heThongRapChieu?.map((item: any) => {
+                        toJS(listCinema)?.heThongRapChieu?.map((item: any) => {
                             return (
                                 <div className='img-logo' onClick={() => setCodeCinema(item.maHeThongRap)}>
                                     <img src={item.logo} />
@@ -98,17 +99,17 @@ const PurchasePage = observer(() => {
                 </div>
                 <div className='list-cinema-block-2'>
                     {
-                        getCumRapAndShowtimes(codeCinema, toJS(listCinema)).map((item: any) => {
+                        (listCinema && getCumRapAndShowtimes(codeCinema, toJS(listCinema)))?.map((item: any) => {
                             return (
                                 <div>
                                     <p className='name-cinema'>{item.tenCumRap}</p>
                                     <div className='show-presentation'>
                                         {
-                                            item.ngayChieuGioChieu.map((time: any) => {
+                                            item.ngayChieu.map((time: any) => {
                                                 return (
-                                                    <div className='item'>
-                                                        <span className="date">{moment(time).format("DD/MM/YYYY")}</span> ~
-                                                        <span className="time">{moment(time).format("HH:mm")}</span>
+                                                    <div className='item' onClick={() => navigate(`/book-ticket/${time.maLichChieu}`)}>
+                                                        <span className="date">{moment(time.ngayChieuGioChieu).format("DD/MM/YYYY")}</span> ~
+                                                        <span className="time">{moment(time.ngayChieuGioChieu).format("HH:mm")}</span>
                                                     </div>
                                                 )
                                             })

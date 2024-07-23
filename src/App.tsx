@@ -14,6 +14,7 @@ import RegisterPage from './component/Register';
 import LoginPage from './component/Login';
 import PurchasePage from './component/Purchase';
 import DownloadApp from './component/DonwloadApp';
+import BookTicketPage from './component/BookTicket';
 
 const MainLayout = () => {
   const theme = useTheme();
@@ -49,6 +50,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />} />
         <Route path="/ticket/:codeMovie" element={<PurchasePage />} />
+        <Route path="/book-ticket/:code" element={<BookTicketPage />} />
         <Route path="/sign-in" element={<LoginPage />} />
         <Route path="/sign-up" element={<RegisterPage />} />
       </Routes>
