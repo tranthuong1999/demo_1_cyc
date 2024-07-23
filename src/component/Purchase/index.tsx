@@ -23,14 +23,21 @@ const PurchasePage = observer(() => {
     const { codeMovie } = useParams();
     const { fetchListCinema, listCinema } = movieStore;
     const { trailer, hinhAnh, ngayKhoiChieu, tenPhim, danhGia } = listCinema;
-    const [codeCinema, setCodeCinema] = useState(toJS(listCinema)?.heThongRapChieu[0]?.maHeThongRap)
+    const [codeCinema, setCodeCinema] = useState()
+
 
     useEffect(() => {
         fetchListCinema(Number(codeMovie))
+        if (toJS(listCinema).hasOwnProperty("heThongRapChieu")) {
+            setCodeCinema((toJS(listCinema)?.heThongRapChieu)[0]?.maHeThongRap)
+        }
     }, [codeMovie])
 
 
     function getCumRapAndShowtimes(maHeThongRap: any, data: any) {
+        if (!maHeThongRap) {
+            return;
+        }
         const heThongRap = data?.heThongRapChieu?.find((rap: any) => rap.maHeThongRap === maHeThongRap);
         if (!heThongRap) {
             return [];
@@ -54,6 +61,8 @@ const PurchasePage = observer(() => {
                 return acc;
             }, []);
     }
+
+    console.log("codeCinema", toJS(listCinema))
 
     return (
         <div className='purchase-ticket'>

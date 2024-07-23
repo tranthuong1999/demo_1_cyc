@@ -39,6 +39,7 @@ const LoginPage = observer(() => {
         e.preventDefault();
         // console.log("credentials", credentials)
         await apiLogin({ data: credentials });
+        navigate("/");
         setOpenModalLogin(false);
     };
 

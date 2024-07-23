@@ -1,13 +1,48 @@
 import { makeAutoObservable } from 'mobx';
 const BASE_URL = "https://movie0706.cybersoft.edu.vn/api"
+type Ticket = {
+    daDat: boolean,
+    giaVe: number,
+    loaiGhe: string,
+    maGhe: number,
+    maRap: number,
+    stt: string,
+    taiKhoanNguoiDat: string,
+    tenGhe: string
+}
+type BookTicket = {
+    maLichChieu?: string,
+    account?: string,
+    danhSachVe?: Ticket[]
+}
 class MovieStore {
     listMovie = [];
     listCinema: any = [];
     listSysmtemCinema: any = [];
     listSheduleCinemaSystem: any = [];
+    listRoom: any = {};
+    isBookingRoom: boolean = false;
+    listTicketBook: any = [];
     constructor() {
         makeAutoObservable(this);
     }
+
+    setListTicketBook = (item?: Ticket, isClear?: boolean) => {
+        const isExit = this.listTicketBook.findIndex((ticket: any) => ticket.maGhe === item?.maGhe)
+        if (isExit === -1) {
+            this.listTicketBook.push(item);
+        }
+        else {
+            const _listTicketBook = [...this.listTicketBook]
+            _listTicketBook.splice(isExit, 1)
+            this.listTicketBook = _listTicketBook;
+        }
+
+        if (isClear) {
+            this.listTicketBook = []
+        }
+    }
+
     fetchListMovie = async () => {
         try {
             const response = await fetch(`${BASE_URL}/QuanLyPhim/LayDanhSachPhim?maNhom=GP09`);
@@ -15,7 +50,7 @@ class MovieStore {
             this.listMovie = data;
         }
         catch (error) {
-            console.error('Failed to fetch todos', error);
+            console.error('fetchListMovie', error);
         }
     }
 
@@ -27,7 +62,7 @@ class MovieStore {
             this.listCinema = data;
         }
         catch (error) {
-            console.error('Failed to fetch todos', error);
+            console.error('fetchListCinema', error);
         }
     }
 
@@ -38,7 +73,7 @@ class MovieStore {
             this.listSysmtemCinema = data;
         }
         catch (error) {
-            console.error('Failed to fetch todos', error);
+            console.error('fetchListSystemCinema', error);
         }
     }
 
@@ -50,9 +85,43 @@ class MovieStore {
             this.listSheduleCinemaSystem = data;
         }
         catch (error) {
-            console.error('Failed to fetch todos', error);
+            console.error('fetchInforSheduleCinemaSystem', error);
         }
     }
+
+    fetchInforTicketRoom = async (codeRoom: number) => {
+        try {
+            const response = await fetch(`${BASE_URL}/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${codeRoom}`);
+            const data: any = await response.json();
+            this.listRoom = data;
+        }
+        catch (error) {
+            console.error('fetchInforTicketRoom', error);
+        }
+    }
+
+    apiBookingTicket = async (props: { data: BookTicket }) => {
+        const { data } = props;
+        const token = JSON.parse(localStorage.getItem("currentUser")!).accessToken
+        try {
+            const response = await fetch(`${BASE_URL}/QuanLyDatVe/DatVe`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify(data),
+            });
+            const result: any = await response.json();
+            this.isBookingRoom = true;
+        }
+        catch (error) {
+            console.log("apiBookingTicket", error)
+            this.isBookingRoom = false;
+        }
+    }
+
+
 
 }
 

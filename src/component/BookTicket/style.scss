@@ -1,4 +1,232 @@
-.book-ticket-page{
+.book-ticket-page {
     width: 100%;
     min-height: 1000px;
+    display: flex;
+    flex: 1;
+    padding: 0px 100px;
+    gap: 100px;
+    overflow: hidden;
+
+    .item-left {
+        margin-top: 67px;
+        flex: 5;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .show-person {
+            display: grid;
+            grid-template-columns: repeat(16, 1fr);
+            gap: 10px;
+
+            .seat {
+                background-color: green;
+                border-radius: 4px;
+                padding: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &.seat-booked {
+                    background-color: rgb(99, 99, 99);
+                }
+
+                &.seat-thuong,
+                &.seat-vip {
+                    background-color: rgba(0, 0, 0, 0.26);
+                    transition: 0.4s;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: rgba(0, 0, 0, 0.04);
+                    }
+                }
+
+                &.seat-active {
+                    background-color: green !important;
+                }
+
+                &.seat-vip {
+                    background-color: orange;
+                }
+            }
+
+        }
+
+        .list-item-seat {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            justify-content: center;
+
+            .seat {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+
+                button {
+                    width: 40px;
+                    height: 40px;
+                    border: none;
+                    border-radius: 4px;
+                }
+
+                p {
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 1.5;
+                }
+
+                .btn-booking {
+                    background-color: rgb(99, 99, 99);
+                }
+
+                .btn-normal {
+                    background-color: rgba(0, 0, 0, 0.26);
+                }
+
+                .btn-vip {
+                    background-color: orange;
+                }
+            }
+
+        }
+
+
+    }
+
+    .item-right {
+        flex: 3;
+        width: 100%;
+        box-shadow: 0 0 5px grey;
+        background-color: #fff;
+        margin-top: 65px;
+        height: 10%;
+        // overflow: hidden;
+
+        .item-child {
+            padding: 24px 0px;
+            width: 90%;
+            margin: auto;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            ;
+
+            .money {
+                color: rgb(139, 195, 74);
+                font-size: 35px;
+                text-align: center;
+                font-weight: 400;
+                line-height: 1.5;
+                letter-spacing: 0.00938em;
+            }
+
+            &.item-child:nth-child(8) {
+                background-color: #fb4226;
+                max-height: 60px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+
+                .btn-book-ticket {
+                    color: #fff;
+                    width: 100%;
+                    font-size: 25px;
+                    border-radius: unset;
+                    border: none;
+                    background-color: #fb4226;
+                    transition: 0.4;
+
+                    &:hover {
+                        background-color: #b42a14;
+                        cursor: pointer;
+                        padding: 15px 0;
+                    }
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .item-seminar {
+            display: flex !important;
+            justify-content: space-between !important;
+            font-weight: 500;
+            line-height: 1.167;
+
+            .name-right {
+                color: #108f3e;
+                font-size: 16px;
+                width: 300px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                margin-right: 10px;
+
+                .date {
+                    color: #fa5238;
+                    font-weight: 500;
+                    font-size: 16px;
+                }
+
+                .time {
+                    font-weight: 500;
+                    font-size: 16px;
+                    color: #108f3e;
+                }
+            }
+
+            .list-table {
+                font-size: 16px !important;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                color: #108f3e;
+
+            }
+        }
+    }
+}
+
+.modal-warning-booked,
+.modal-booked-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 19px;
+
+    .title {
+        color: #595959;
+        font-size: 1.875em;
+        font-weight: 600;
+        text-align: center;
+        text-transform: none;
+        word-wrap: break-word;
+    }
+
+    .seat {
+        font-size: 1.125em;
+        font-weight: normal;
+        line-height: normal;
+        text-align: center;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .btn-understand {
+        border-radius: .25em;
+        background: initial;
+        background-color: #2778c4;
+        color: #fff;
+        font-size: 1.0625em;
+        border: none;
+        padding: 8px 16px;
+        transition: 0.4s;
+
+        &:hover {
+            cursor: pointer;
+            background-image: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1));
+        }
+    }
 }
