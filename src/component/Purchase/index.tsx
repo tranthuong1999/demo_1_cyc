@@ -62,7 +62,12 @@ const PurchasePage = observer(() => {
             }, []);
     }
 
-    console.log("codeCinema", toJS(listCinema))
+    const scrollToBottom = () => {
+        window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: 'smooth'
+        });
+    };
 
     return (
         <div className='purchase-ticket'>
@@ -78,7 +83,7 @@ const PurchasePage = observer(() => {
                     <p className='date-time'>{moment(ngayKhoiChieu).format("DD/MM/YYYY")}</p>
                     <p className='name-movie'> {tenPhim}</p>
                     <p className='timer'>120phút </p>
-                    <button className='btn-ticket'> Mua vé</button>
+                    <button className='btn-ticket' onClick={scrollToBottom}> Mua vé</button>
                 </div>
                 <div className={classNames("rating", isMobile ? "rating-mobile" : "")}>
                     <CircularProgressbar className='circular-bar' value={100} text={danhGia} />

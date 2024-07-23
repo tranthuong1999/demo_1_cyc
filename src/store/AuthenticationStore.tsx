@@ -80,8 +80,6 @@ class AuthenticationStore {
             this.userInfoErr = error;
         }
     }
-
-
 }
 
 const authenticationStore = new AuthenticationStore();

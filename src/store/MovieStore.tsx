@@ -23,6 +23,7 @@ class MovieStore {
     listRoom: any = {};
     isBookingRoom: boolean = false;
     listTicketBook: any = [];
+    listHistoryBooking: any = [];
     constructor() {
         makeAutoObservable(this);
     }
@@ -118,6 +119,24 @@ class MovieStore {
         catch (error) {
             console.log("apiBookingTicket", error)
             this.isBookingRoom = false;
+        }
+    }
+
+    apiFetchHistoryBookTicker = async (tuKhoa: string) => {
+        try {
+            const response = await fetch(`${BASE_URL}/QuanLyNguoiDung/ThongTinTaiKhoa`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // 'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify(tuKhoa),
+            });
+            const data: any = await response.json();
+            this.listHistoryBooking = data;
+        }
+        catch (error) {
+            console.error('Failed to fetch todos', error);
         }
     }
 

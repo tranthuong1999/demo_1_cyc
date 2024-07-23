@@ -96,8 +96,6 @@ const LoginPage = observer(() => {
             </form>
         )
     }
-    console.log("openModalLogin", openModalLogin)
-
     return (
         <div className="bgr-login">
             <img src={bgr_login} style={{ width: "100%", minHeight: "1100px", objectFit: "cover" }} />
