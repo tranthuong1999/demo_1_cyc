@@ -16,6 +16,7 @@ import PurchasePage from './component/Purchase';
 import DownloadApp from './component/DonwloadApp';
 import BookTicketPage from './component/BookTicket';
 import HistoryTickerPage from './component/HistoryTicket';
+import NotFoundPage from './component/NotFound';
 
 const MainLayout = () => {
   const theme = useTheme();
@@ -55,6 +56,7 @@ function App() {
         <Route path="/sign-in" element={<LoginPage />} />
         <Route path="/sign-up" element={<RegisterPage />} />
         <Route path="/account" element={<HistoryTickerPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );
